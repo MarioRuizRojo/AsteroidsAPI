@@ -1,11 +1,11 @@
-# Asteroids API
+# Asteroids API  
 This java reactive(WEBFLUX) backend application is a REST API with 2 endpoints:  
-GET /api/largestbyyear
-GET /api/tenclosest
-The first endpoint has 2 parameters: start_date and end_date, and the second endpoint has 1 parameter: year  
+GET /api/largestbyyear  
+GET /api/tenclosest  
+The first endpoint has 2 parameters: start_date and end_date, and the second endpoint has 1 parameter: year   
 So the first endpoint returns all data of the largest asteroid that have passed closest to the earth that year.  
 And the second endpoint returns a list of the 10 asteroids that have passed closest to the earth inside a period of time.  
-This application is a client of Neo Feed API from NASA.
+This application is a client of Neo Feed API from NASA.  
 
 ## Cache
 This application uses a mongoDB as cache for saving all the already requested Neo Data storing it by date.  
