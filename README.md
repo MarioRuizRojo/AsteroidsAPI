@@ -7,7 +7,23 @@ So the first endpoint returns all data of the largest asteroid that have passed 
 And the second endpoint returns a list of the 10 asteroids that have passed closest to the earth inside a period of time.  
 This application is a client of Neo Feed API from NASA.  
 
-## Cache
+## Get It Running
+Open an account on NASA website.
+Set up your api_key as environment variable:
+```Shell
+API_KEY=<yourApiKeyValue>
+```  
+Install mongodb and jdk11.
+In windows run mongo:
+```Shell
+mongod --port 27017 --dbpath C:\MongoDB\data\db
+```  
+In windows run the app:
+```Shell
+java -jar /target/nasa-client-0.0.1-SNAPSHOT.jar
+```  
+
+## Neo Feed API Limitations and The Cache Solution
 This application uses a mongoDB as cache for saving all the already requested Neo Data storing it by date.  
 Neo Feed API has a limit of request per hour (1000) and also has a limit of request per min.  
 Neo Feed API has a limit of dates inside the date's range in a request (7).  
@@ -15,7 +31,7 @@ So using the mongoDB this app decrease the number of requests per hour.
 This app only requests ranges of one day to avoid the range date parameter limitation.  
 It also uses reactive delays in the streams to avoid the limitation of requests per min.  
 
-## Code Modules
+## Explanation of Code Modules
 ### com.nasa.client.app
 #### AppConfig
 Configuraion file to setup the Neo Feed API reactive web client
@@ -41,21 +57,6 @@ All classes inside this package are made from JSON response structure of Neo Fee
 ### com.nasa.client.app.models.services
 #### NasaService
 Neo Feed API web client that makes reactive requests  
-## Get It Running
-Open an account on NASA website.
-Set up your api_key as environment variable:
-```Shell
-API_KEY=<yourApiKeyValue>
-```  
-Install mongodb and jdk11.
-In windows run mongo:
-```Shell
-mongod --port 27017 --dbpath C:\MongoDB\data\db
-```  
-In windows run the app:
-```Shell
-java -jar /target/nasa-client-0.0.1-SNAPSHOT.jar
-```  
 
 ## TODOs  
 Fix UnitTests and add some failure cases
